@@ -75,14 +75,24 @@ resultado = modelo.evaluate(x_test, y_test)
 
 
 """
-VISUALIZAR EL DESEMPEÑO GRAFRICAMENTE
+VISUALIZAR EL DESEMPEÑO GRAFICAMENTE
 """
 
+# Le añadimos un parametro verbose = 0, para que no nos muestre TODAS las metricas en pantalla
+historia = modelo.fit(x_train, y_train, batch_size=32, epochs=200, validation_data=(x_val, y_val), verbose = 0 )
 
+import matplotlib.pyplot as plt
 
+# Mostrar el error porcertual absoluto
+plt.plot(historia.history['mean_absolute_percentage_error'])
 
+# En la misma grafica colocar el valor del error porcentual absoluto
+plt.plot(historia.history['val_mean_absolute_percentage_error'])
 
+#Evaluar como se comporto la red, con la funcion de perdidas
+plt.plot(historia.history['loss'])
 
+plt.plot(historia.history['val_loss'])
 
 
 
